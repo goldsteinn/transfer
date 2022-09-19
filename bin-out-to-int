@@ -1,0 +1,13 @@
+#! /usr/bin/env python3
+
+import sys
+import struct
+
+data = sys.stdin.buffer.read()
+
+sz = 0
+while sz < len(data):
+    word = data[sz:sz + 8]
+    res = struct.unpack('Q', word)[0]
+    print("{:<16} -> {:e}".format(res, float(res)))
+    sz += 8
